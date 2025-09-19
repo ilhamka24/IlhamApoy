@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albums – Ilham's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        nav {
+            background-color: #273F4F;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #EFEEEA;
+        }
+
+        .nav-links a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: #EFEEEA;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+            .nav-links a:hover {
+                color: #57B4BA;
+            }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .photo-card {
+            flex: 1 1 300px;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+            .photo-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            }
+
+            .photo-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                display: block;
+            }
+
+        .caption {
+            padding: 16px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+            .overlay img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 8px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            }
+
+            .overlay:active {
+                display: none;
+            }
+
+        .overlay-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .fullscreen {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+            .fullscreen img {
+                max-width: 90%;
+                max-height: 80vh;
+                margin: auto;
+                display: block;
+            }
+
+        .fullscreenCaption {
+            margin-top: 12px;
+            color: #EFEEEA;
+            font-size: 18px;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(0,0,0,0.6);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            color: #EFEEEA;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<script>
+    function showFullscreen(imgElement) {
+        // ambil src gambar
+        const src = imgElement.src;
+        // ambil teks caption yang ada di div.caption setelah gambar
+        const captionText = imgElement.nextElementSibling
+            ? imgElement.nextElementSibling.innerText
+            : '';
+
+        document.getElementById('fullscreenModal').style.display = 'block';
+        document.getElementById('fullscreenImage').src = src;
+        document.getElementById('fullscreenCaption').innerText = captionText;
+        document.getElementById('fullscreenCaption').style.color = 'white';
+    }
+
+    function closeFullscreen() {
+        document.getElementById('fullscreenModal').style.display = 'none';
+    }
+</script>
+
+<body>
+
+    <nav>
+        <div class="nav-logo">Ilham's Portfolio</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="albums.html">Albums</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Dokumentasi</h2>
+
+        <div class="gallery">
+
+            <div class="photo-card">
+                <img src="img/1.jpg" alt="Album Photo 2" onclick="showFullscreen(this)">
+                <div class="caption">ketika SMA, saya pernah menjadi ketua salah satu divisi di sebuah acara berskala provinsi.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/2.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya adalah ketua salah satu departement OSIS kala SMA.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/3.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya mengikuti lomba Line Tracer di Universitas Kanjuruhan.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/4.jpg" alt="Album Photo 2" onclick="showFullscreen(this)">
+                <div class="caption">Saya mengikuti lomba Line Tracer di Universitas Trunojoyo.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/5.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya tergabung di Himpunan Mahasiswa ketika S1 di PENS.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/6.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya mengikuti pelatihan LKMM pra-TD ketika S1</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/7.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya mengikuti pelatihan LKMM TD ketika S1</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/8.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya tergabung sebagai panitia di acara lomba robot di kampus dengan skala provinsi.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/9.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya mengikuti lomba proyek akhir yang diadakan BEM kampus saat S1.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/10.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">nilai terakhir saya ketika mengikuti tes Toefl.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/11.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">dokumentasi ketika saya memperbaiki mesin Coal Crusher di sebuah power plant.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/12.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">dokumentasi ketika saya memperbaiki motor Air Fan untuk turbin di sebuah power plant.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/13.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">dokumentasi ketika saya memperbaiki kelistrikan pada mesin Coal Feeder.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/14.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">dokumentasi ketika saya memperbaiki AC Central untuk panel room.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/15.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">dokumentasi ketika saya supervisi commissioning power plant baru. </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/16.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">ketika saya sedang memperbaiki transmitter pada air line di sebuah power plant. </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/17.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya melakukan preventive checklist.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/18.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya sedang melakukan perbaikan disc charge valve di sebuah power plant.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/19.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya supervisi Handover antar shift tim maintenance.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/20.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya supervisi perbaikan di sebuah panel motor di sebuah power plant.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/21.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">saya menggambar layout jalur pipa, kabel tray, dan letak mesin untuk mesin selang baru menggunakan Sketchup [tampak atas].</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/22.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">desain coupling motor [FCL] yang saya buat untuk improvement.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/23.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">desain sarangan untuk mesin extruder plastik yang saya buat.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/24.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">desain saya saat ada rencana penambahan mesin selang, dan perlu re-layout seluruh mesin.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/25.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">Saya mendesain tiang untuk pendingin bak mesin selang.</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/26.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">desain yang saya buat untuk cetakan mesin selang (RnD).</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="img/27.jpg" alt="Album Photo 3" onclick="showFullscreen(this)">
+                <div class="caption">ketika saya melakukan Seminar Hasil untuk Tesis saya.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Ilham Apoy. All rights reserved.
+    </footer>
+
+</body>
+
+<div id="fullscreenModal" class="fullscreen">
+    <span class="close" onclick="closeFullscreen()">&times;</span>
+    <img id="fullscreenImage" src="">
+    <div id="fullscreenCaption"></div>
+</div>
+
+</html>
